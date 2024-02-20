@@ -34,8 +34,8 @@ module.exports = () => {
         name: 'Text Editor',
         short_name: 'JATE',
         description: 'note taking PWA',
-        background_color: '#272822',
-        theme_color: '#272822',
+        background_color: '#20401d',
+        theme_color: '#20401d',
         start_url: '/',
         publicPath: '/',
         icons: [
