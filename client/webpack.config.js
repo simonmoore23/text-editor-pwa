@@ -33,7 +33,7 @@ module.exports = () => {
         fingerprints: false,
         name: 'Text Editor',
         short_name: 'JATE',
-        description: 'note taking PWA',
+        description: 'PWA text editor',
         background_color: '#20401d',
         theme_color: '#20401d',
         start_url: '/',
