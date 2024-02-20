@@ -12,27 +12,30 @@ module.exports = () => {
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js',
-      database: './src/js/database.js',
-      editor: './src/js/editor.js',
-      header: './src/js/header.js'
     },
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
+      //HtmlWebpackPlugin will generate the HTML file and inject the bundles
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'JATE'
+        title: 'Text Editor',
       }),
+      //injects custom SW for precaching
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
+      // create manifest.json
       new WebpackPwaManifest({
         fingerprints: false,
-        inject: true,
-        name: 'Text editor',
+        name: 'Text Editor',
         short_name: 'JATE',
-        description: 'Just another text editor',
-        background_color: '#20401d',
-        theme_color: '#20401d',
+        description: 'note taking PWA',
+        background_color: '#272822',
+        theme_color: '#272822',
         start_url: '/',
         publicPath: '/',
         icons: [
@@ -41,33 +44,33 @@ module.exports = () => {
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
-        ]
+        ],
       }),
-      new InjectManifest({
-        swsrc: './src-sw.js',
-        swDest: 'src-sw.js'
-      })
-      
     ],
 
     module: {
       rules: [
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader',]
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.m?js$/,
-          exckude:/node_modules/,
+          exclude: /node_modules/,
+          //Load Babel to use ES6
           use: {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime',]
+              plugins: [
+                // /Compile object rest and spread to ES5
+                '@babel/plugin-proposal-object-rest-spread',
+                //all of the babel helpers will reference the module @babel/runtime instead of being attached to each file to avoid duplication across compiled output
+                '@babel/transform-runtime',
+              ],
             },
           },
         },
-        
       ],
     },
   };
