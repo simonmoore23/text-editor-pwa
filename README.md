@@ -4,10 +4,6 @@
 
 This application is a text editor progressive web application that runs in the browser as well as offline. 
 
-
-
-To see a video of the platform working in Insomnia, see here:
-
 ## Table of Contents
 
 - [Licence](#licence)
