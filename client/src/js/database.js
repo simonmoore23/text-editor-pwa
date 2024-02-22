@@ -36,7 +36,7 @@ const contactDb = await openDB('jate', 1);
 
 const tx = contactDb.transaction('jate', 'readonly');
 
-const store = tx/objectStore('jate');
+const store = tx.objectStore('jate');
 
 const request = store.getAll();
 
