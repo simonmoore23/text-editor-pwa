@@ -4,7 +4,7 @@
 
 This application is a text editor progressive web application that runs in the browser as well as offline. 
 
-You can see a full working version of the websote at the `Render` link below in the `links` section.
+You can see a full working version of the website at the `Render` link below in the `links` section.
 
 ## Table of Contents
 
